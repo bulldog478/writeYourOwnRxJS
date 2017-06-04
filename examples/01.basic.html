@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rx-simple-show</title>
+</head>
+<body>
+    <script src='/dist/rx-simple.js'></script>
+<script>
+    const observable = Rx.Observable.create((observer) => {
+        observer.next(1)
+        observer.next(2)
+        observer.next(3)
+        observer.next(4)
+        observer.complete()
+    })
+
+    const observer = Rx.Observer.create(
+        (value) => value % 2 === 0 && console.log(value),
+        (err) => console.log(err),
+        ()=> console.log('completed!')
+    )
+
+    observable.subscribe(observer)
+</script>
+</body>
+</html>

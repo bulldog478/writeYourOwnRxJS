@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rx-simple-show</title>
+</head>
+<body>
+    <button id='unsubscribeTake'>unsubscribe take</button>
+    <script src='/dist/rx-simple.js'></script>
+<script>
+    const unsubscribeTakeDom = document.getElementById('unsubscribeTake')
+    const app$ = Rx.Observable.interval(1000).take(3)
+    const unsubscribe = app$.subscribe((x) => {
+        console.log('x: ' + x)
+    })
+
+    unsubscribeTakeDom.onclick = function() {
+        unsubscribe()
+    }
+</script>
+</body>
+</html>
